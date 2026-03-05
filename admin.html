@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Panel - J3R Water</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h2>Admin Login</h2>
+
+<input type="text" id="user" placeholder="Username">
+
+<input type="password" id="pass" placeholder="Password">
+
+<button onclick="login()">Login</button>
+
+<div id="panel" style="display:none">
+
+<h2>Delivery Monitoring</h2>
+
+<ul id="orders"></ul>
+
+</div>
+
+<script>
+
+function login(){
+
+let u=document.getElementById("user").value;
+let p=document.getElementById("pass").value;
+
+if(u=="admin" && p=="1234"){
+
+document.getElementById("panel").style.display="block";
+
+loadOrders();
+
+}
+
+else{
+
+alert("Wrong Login");
+
+}
+
+}
+
+function loadOrders(){
+
+let orders=JSON.parse(localStorage.getItem("orders"))||[];
+
+let list=document.getElementById("orders");
+
+list.innerHTML="";
+
+orders.forEach(o=>{
+
+let li=document.createElement("li");
+
+li.innerHTML=
+o.name+" - "+o.gallon+" Gallons - "+o.address+" | "+o.status;
+
+list.appendChild(li);
+
+});
+
+}
+
+</script>
+
+</body>
+</html>
