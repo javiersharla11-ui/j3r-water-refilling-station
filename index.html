@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>J3R Water Refilling Station</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+<h1>J3R WATER REFILLING STATION</h1>
+<p>Clean • Safe • Affordable Drinking Water</p>
+</header>
+
+<div class="container">
+
+<h2>Order Water Delivery</h2>
+
+<input type="text" id="name" placeholder="Customer Name">
+
+<input type="text" id="address" placeholder="Address">
+
+<input type="number" id="gallon" placeholder="Number of Gallons">
+
+<button onclick="order()">Submit Order</button>
+
+<p id="msg"></p>
+
+</div>
+
+<script>
+
+function order(){
+
+let name=document.getElementById("name").value;
+let address=document.getElementById("address").value;
+let gallon=document.getElementById("gallon").value;
+
+let orders=JSON.parse(localStorage.getItem("orders"))||[];
+
+orders.push({
+name:name,
+address:address,
+gallon:gallon,
+status:"Pending"
+});
+
+localStorage.setItem("orders",JSON.stringify(orders));
+
+document.getElementById("msg").innerHTML="✅ Order Sent!";
+
+}
+
+</script>
+
+</body>
+</html>
